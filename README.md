@@ -1,6 +1,6 @@
 # agent-dotfiles
 
-Personal coding-agent preferences, stored as markdown. `install.sh` clones the repo to `~/agent-dotfiles` and symlinks it into each agent.
+Personal coding-agent preferences, stored as markdown. `install.sh` clones the repo to `~/agent-dotfiles` and runs `link.sh`, which symlinks it into each agent.
 
 | Path | Linked to |
 | --- | --- |
