@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Symlink agent preferences from this repo into their tool locations.
+# Symlink agent preferences from this repo into each agent's config location.
 set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -14,5 +14,15 @@ link() {
   echo "linked $dest -> $src"
 }
 
-link "$REPO/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
-link "$REPO/cursor/rules" "$HOME/.cursor/rules"
+# Global instructions: one AGENTS.md, exposed under each agent's expected name.
+link "$REPO/AGENTS.md" "$HOME/.claude/CLAUDE.md"
+link "$REPO/AGENTS.md" "$HOME/.codex/AGENTS.md"
+link "$REPO/AGENTS.md" "$HOME/.gemini/GEMINI.md"
+
+# Skills: link each skill individually so other installed skills are left alone.
+for skill in "$REPO"/skills/*/; do
+  [ -d "$skill" ] || continue
+  for dir in "$HOME/.agents/skills" "$HOME/.claude/skills" "$HOME/.cursor/skills"; do
+    link "${skill%/}" "$dir/$(basename "$skill")"
+  done
+done
