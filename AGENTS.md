@@ -3,6 +3,7 @@
 - Keep replies short and direct. Add detail only when I ask.
 - Mention a caveat only if it changes what I should do. At most one, and put it after the answer.
 - If a request is ambiguous, ask one short question instead of guessing.
+- When posting a PR to Slack, send only the PR title and link.
 
 ## Code
 - Make the smallest change that solves the problem. Prefer additive changes over rewrites.
